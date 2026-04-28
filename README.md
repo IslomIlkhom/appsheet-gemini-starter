@@ -1,8 +1,8 @@
-# Your AppSheet App Just Got an AI Brain 🧠⚡
+# Turn AI Into Real Business Workflows 🧠⚡
 
-**Give your AppSheet app the power to read documents, classify files, and understand text — with 1 script and zero coding experience required.**
+**Any tool can classify a document. AppSheet + Gemini lets you build the entire system around it — approvals, routing, dashboards, notifications, mobile apps — without code.**
 
-This starter kit connects AppSheet to Google's Gemini AI through Apps Script. Upload a file in your app, and AI tells you what it is, pulls out the data you need, and writes it back to your sheet. All inside the Google ecosystem — no third-party tools, no monthly fees.
+This starter kit connects AppSheet to Gemini AI through Apps Script. AI reads your files and extracts data. AppSheet turns that data into workflows your whole team can use — from the warehouse floor to the manager's dashboard. All inside Google, no third-party tools, no monthly fees.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Made with Apps Script](https://img.shields.io/badge/Made%20with-Apps%20Script-34A853?logo=google&logoColor=white)](https://script.google.com)
@@ -14,17 +14,17 @@ This starter kit connects AppSheet to Google's Gemini AI through Apps Script. Up
 
 ## 🏗 What You Can Build
 
-### 📄 Instant Invoice Processing
-Your field team uploads a photo of an invoice in AppSheet. AI reads it and fills in the vendor name, invoice number, total amount, and date — no manual typing.
+### 📄 Invoice Processing System
+Field team photographs an invoice → AI extracts vendor, amount, date → AppSheet routes it to the right approver → manager approves on their phone → finance gets notified. **Full cycle, not just extraction.**
 
-### 💬 Smart Customer Feedback
-A customer submits a complaint through your AppSheet form. AI instantly tags it as "Negative — Delivery Issue" and routes it to the right team.
+### 💬 Customer Feedback Pipeline
+Customer submits complaint → AI tags sentiment and category → AppSheet assigns it to the responsible team → team lead sees a dashboard of open issues → escalation triggers if unresolved after 48h.
 
-### 📸 Photo Quality Inspection
-A factory worker takes a photo of a finished product. AI checks it against your spec and flags "Scratch on top-left corner — Confidence: 87%."
+### 📸 Quality Control Workflow
+Factory worker photographs finished product → AI flags defects with confidence score → low-confidence items go to QA supervisor for review → approved items update the production log → daily report emails to plant manager.
 
-### 🗂 Automatic Document Filing
-Someone drops a PDF into a shared Drive folder. AI reads it and fills in: *"Type: Safety Data Sheet, Language: German, Summary: Chemical handling guidelines for Product X."*
+### 🗂 Document Management System
+Files arrive in a shared folder → AI classifies type, language, and content → AppSheet organizes them by department → team members get notified about relevant documents → everything is searchable and auditable.
 
 ---
 
