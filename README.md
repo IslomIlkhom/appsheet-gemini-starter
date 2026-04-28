@@ -1,254 +1,238 @@
-# AppSheet + Gemini AI Starter Kit ⚡🤖
+# Your AppSheet App Just Got an AI Brain 🧠⚡
 
-> Connect Google AppSheet to Gemini AI via Apps Script. Classify documents, extract data, and analyze text — directly from your AppSheet app.
+**Give your AppSheet app the power to read documents, classify files, and understand text — with 1 script and zero coding experience required.**
+
+This starter kit connects AppSheet to Google's Gemini AI through Apps Script. Upload a file in your app, and AI tells you what it is, pulls out the data you need, and writes it back to your sheet. All inside the Google ecosystem — no third-party tools, no monthly fees.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Apps Script](https://img.shields.io/badge/Google-Apps%20Script-green)](https://script.google.com)
-[![Gemini](https://img.shields.io/badge/Google-Gemini%20AI-purple)](https://ai.google.dev)
+[![Made with Apps Script](https://img.shields.io/badge/Made%20with-Apps%20Script-34A853?logo=google&logoColor=white)](https://script.google.com)
+[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini%20AI-886FBF?logo=google&logoColor=white)](https://ai.google.dev)
 
 ---
 
-## What This Does
+## 🏗 What You Can Build
 
-This starter kit gives your **AppSheet** apps the power of **Gemini AI** through **Apps Script** — no external services, no webhooks, no complex setup.
+### 📄 Instant Invoice Processing
+Your field team uploads a photo of an invoice in AppSheet. AI reads it and fills in the vendor name, invoice number, total amount, and date — no manual typing.
 
-**4 ready-to-use AI functions:**
+### 💬 Smart Customer Feedback
+A customer submits a complaint through your AppSheet form. AI instantly tags it as "Negative — Delivery Issue" and routes it to the right team.
 
-| Function | Input | Output |
-|----------|-------|--------|
-| 🗂 `classifyDocument()` | Any file (PDF, image, Doc) | Type, language, summary, confidence |
-| 📋 `extractData()` | Any file + field list | Structured data from documents |
-| 📝 `summarizeDocument()` | Any file | Title, summary, key points |
-| 💬 `analyzeText()` | Text string | Sentiment, category, tags |
+### 📸 Photo Quality Inspection
+A factory worker takes a photo of a finished product. AI checks it against your spec and flags "Scratch on top-left corner — Confidence: 87%."
+
+### 🗂 Automatic Document Filing
+Someone drops a PDF into a shared Drive folder. AI reads it and fills in: *"Type: Safety Data Sheet, Language: German, Summary: Chemical handling guidelines for Product X."*
 
 ---
 
-## Architecture
+## 🔄 How It Works
 
+```mermaid
+graph LR
+    A["📱 AppSheet\nUser uploads file\nor submits text"] 
+    B["⚙️ Apps Script\nRuns your AI function\nautomatically"]
+    C["🤖 Gemini AI\nReads, classifies,\nextracts data"]
+    D["📊 Google Sheets\nResults appear\ninstantly"]
+
+    A -->|"Automation\ntriggers script"| B
+    B -->|"Sends file\n+ prompt"| C
+    C -->|"Returns\nstructured JSON"| B
+    B -->|"Writes results\nto sheet"| D
+    D -->|"AppSheet shows\nupdated data"| A
+
+    style A fill:#34A853,color:#fff,stroke:none
+    style B fill:#4285F4,color:#fff,stroke:none
+    style C fill:#886FBF,color:#fff,stroke:none
+    style D fill:#FBBC04,color:#000,stroke:none
 ```
-┌─────────────┐         ┌──────────────────┐         ┌─────────────┐
-│             │  Call    │                  │  API     │             │
-│  AppSheet   │────────▶│  Google Apps      │────────▶│  Gemini AI  │
-│  Automation │  Script │  Script          │         │  API        │
-│             │◀────────│                  │◀────────│             │
-└─────────────┘  Write  └──────────────────┘  JSON   └─────────────┘
-                 back           │
-                         ┌──────┴──────┐
-                         │             │
-                         ▼             ▼
-                   ┌──────────┐  ┌──────────┐
-                   │ Google   │  │ Google   │
-                   │ Drive    │  │ Sheets   │
-                   │ (files)  │  │ (data)   │
-                   └──────────┘  └──────────┘
-```
 
-**How it works:**
-1. User uploads a file or submits data in AppSheet
-2. AppSheet automation triggers **"Call a script"**
-3. Apps Script sends the file/text to Gemini AI
-4. Results are written back to Google Sheets
-5. AppSheet displays the results instantly
+**In plain English:**
+1. A user does something in AppSheet (uploads a file, adds a row, taps a button)
+2. An AppSheet automation calls your Apps Script function
+3. Apps Script sends the file to Gemini AI with instructions ("classify this" or "extract the invoice number")
+4. Gemini returns the answer as structured data
+5. Apps Script writes the results back to Google Sheets
+6. AppSheet displays the updated data — the user sees it instantly
 
 ---
 
-## Quick Start (10 minutes)
+## ⚡ Quick Start
 
-### Step 1: Get a Gemini API Key
+> **Total time: ~10 minutes.** You need a Google account and an AppSheet app connected to a Google Sheet.
 
-1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
+### Step 1 · 2 min · Get your free API key
+
+1. Go to **[Google AI Studio](https://aistudio.google.com/apikey)**
 2. Click **Create API Key**
-3. Copy the key
+3. Copy it somewhere safe — you'll paste it in the next step
 
-### Step 2: Set Up Apps Script
+### Step 2 · 3 min · Add the script to your sheet
 
-1. Open your Google Sheet (the one connected to your AppSheet app)
-2. Go to **Extensions → Apps Script**
-3. Delete the default `Code.gs` content
-4. Copy and paste the contents of [`src/Code.js`](src/Code.js)
-5. Go to **Project Settings** (⚙️ icon)
-6. Under **Script Properties**, add:
-   - Key: `GEMINI_API_KEY`
-   - Value: *your-api-key*
+1. Open the Google Sheet that powers your AppSheet app
+2. Click **Extensions → Apps Script**
+3. Delete everything in the default `Code.gs` file
+4. Open [`src/Code.js`](src/Code.js) from this repo → copy all of it → paste it in
+5. Click the ⚙️ **Project Settings** gear icon
+6. Scroll to **Script Properties** → click **Add script property**
+7. Set the key to `GEMINI_API_KEY` and paste your API key as the value
+8. Click **Save**
 
-### Step 3: Test the Connection
+### Step 3 · 1 min · Verify it works
 
-1. In the Apps Script editor, select `testConnection` from the dropdown
-2. Click **▶ Run**
-3. Check **Execution Log** — you should see: `✅ Connection successful`
+1. Back in the Apps Script editor, click the function dropdown → select **`testConnection`**
+2. Click **▶ Run** (grant permissions if prompted)
+3. Open the **Execution Log** — you should see:
+   ```
+   ✅ Connection successful
+   ```
 
-### Step 4: Connect AppSheet
+### Step 4 · 4 min · Connect AppSheet
 
-1. In AppSheet, go to **Automation → Bots**
-2. Create a new Bot with an event (e.g., "When a new row is added")
-3. Add a **Task** → choose **"Call a script"**
-4. Select your Apps Script project
-5. Choose the function (e.g., `classifyDocument`)
-6. Pass the file ID from your row
+1. In your AppSheet app, go to **Automation → Bots**
+2. Create a new Bot
+3. Set the **Event** (e.g., "When a new row is added" or "When a column changes")
+4. Add a **Task** → choose **"Call a script"**
+5. Select your Apps Script project
+6. Pick the function you want (e.g., `classifyDocument`)
+7. Map the file ID column from your table to the function parameter
+8. Save and test — upload a file and watch AI fill in the results
 
-That's it. AppSheet now has AI.
+**Done.** Your AppSheet app now has AI. 🎉
 
 ---
 
-## API Reference
+## 🗂 Functions
 
-### `callGemini(prompt, options?)`
-Send a text prompt to Gemini.
+| Function | What it does | You give it | You get back |
+|----------|-------------|-------------|-------------|
+| `classifyDocument(fileId)` | Reads a file and tells you what type of document it is | A Google Drive file ID | `{ type: "Invoice", language: "EN", summary: "...", confidence: 92 }` |
+| `extractData(fileId, fields)` | Pulls specific data points out of a document | File ID + list of fields like `["vendor", "date", "amount"]` | `{ vendor: "Acme Corp", date: "2026-03-15", amount: "$4,200" }` |
+| `summarizeDocument(fileId)` | Reads a document and gives you the highlights | A Google Drive file ID | `{ title: "...", summary: "...", key_points: [...] }` |
+| `analyzeText(text)` | Reads text and tells you the sentiment and topic | Any text string | `{ sentiment: "Positive", category: "Product Review", tags: [...] }` |
 
+### Quick code examples
+
+**Classify a document:**
 ```javascript
-const answer = callGemini("What is AppSheet?");
-Logger.log(answer);
-```
-
-### `callGeminiWithFile(prompt, fileSource, options?)`
-Send text + file to Gemini. Accepts a Drive file ID or Blob.
-
-```javascript
-const result = callGeminiWithFile(
-  "What product is shown in this image?",
-  "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs"
-);
-```
-
-### `callGeminiJSON(prompt, fileSource?, options?)`
-Get structured JSON response from Gemini. Optionally include a file.
-
-```javascript
-// Text only
-const data = callGeminiJSON(
-  'Extract {name, email} from: "John Smith, john@example.com"'
-);
-// → { name: "John Smith", email: "john@example.com" }
-
-// With file
-const result = callGeminiJSON("Classify this document", "1BxiMVs...");
-// → { type: "Invoice", language: "EN", ... }
-```
-
-### `classifyDocument(fileId)`
-Classify a document by type, language, and content.
-
-```javascript
+// Pass a Google Drive file ID — get back the document type, language, and a summary
 const result = classifyDocument("1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs");
-// → { type: "Invoice", language: "EN", summary: "...", confidence: 92 }
+Logger.log(result.type);       // "Invoice"
+Logger.log(result.confidence); // 92
 ```
 
-### `extractData(fileId, fields?)`
-Extract specific fields from a document.
-
+**Extract invoice data:**
 ```javascript
-const result = extractData("1BxiMVs...", [
-  "company_name", "invoice_number", "total_amount", "date"
-]);
-// → { company_name: "Acme Corp", invoice_number: "INV-001", ... }
+// Tell it what fields to look for — it pulls them from the document
+const data = extractData("1BxiMVs...", ["company_name", "invoice_number", "total"]);
+Logger.log(data.company_name); // "Acme Corp"
+Logger.log(data.total);        // "$4,200.00"
 ```
 
-### `summarizeDocument(fileId)`
-Generate a summary of any document.
-
+**Analyze customer feedback:**
 ```javascript
-const result = summarizeDocument("1BxiMVs...");
-// → { title: "...", summary: "...", key_points: [...], word_count: 1250 }
-```
-
-### `analyzeText(text)`
-Analyze text from AppSheet form inputs.
-
-```javascript
-const result = analyzeText("The product quality was excellent");
-// → { sentiment: "Positive", category: "Product Review", tags: [...] }
+// Pass any text — get back sentiment, category, and tags
+const feedback = analyzeText("The delivery was late and the package was damaged");
+Logger.log(feedback.sentiment); // "Negative"
+Logger.log(feedback.category);  // "Delivery Issue"
 ```
 
 ---
 
-## Options
+## 📎 Supported File Types
 
-All `callGemini*` functions accept an options object:
+| File type | What happens |
+|-----------|-------------|
+| **PDF** | Sent directly to AI — works great |
+| **Images** (PNG, JPG, HEIC) | Sent directly — perfect for photos from AppSheet |
+| **Google Docs** | Auto-converted to PDF, then sent |
+| **Google Sheets** | Auto-converted to PDF, then sent |
+| **Google Slides** | Auto-converted to PDF, then sent |
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `model` | `gemini-2.0-flash-lite` | Gemini model to use |
-| `temperature` | `0.2` | Creativity (0 = deterministic, 1 = creative) |
-| `maxTokens` | `2048` | Maximum response length |
+> **Tip:** For best results with photos, make sure the image is clear and well-lit. Gemini reads text in images too (OCR built-in).
+
+---
+
+<details>
+<summary><strong>🔧 Advanced: API Options & Configuration</strong></summary>
+
+### Changing the AI model
+
+The default model is `gemini-2.0-flash-lite` — fast and free. You can switch to a more powerful model:
 
 ```javascript
-const result = callGemini("Write a creative product description", {
-  model: "gemini-2.0-flash",
-  temperature: 0.8,
-  maxTokens: 1000
+const result = callGemini("Describe this in detail", {
+  model: "gemini-2.0-flash",     // More capable model
+  temperature: 0.8,               // Higher = more creative responses
+  maxTokens: 4096                  // Longer responses
 });
 ```
 
----
+| Option | Default | What it controls |
+|--------|---------|-----------------|
+| `model` | `gemini-2.0-flash-lite` | Which Gemini model to use |
+| `temperature` | `0.2` | How creative the response is (0 = factual, 1 = creative) |
+| `maxTokens` | `2048` | Maximum length of the response |
 
-## Use Cases
+### Low-level API functions
 
-- **Invoice Processing** — Upload invoices → auto-extract vendor, amount, date
-- **Document Management** — Drop files → auto-classify by type and language
-- **Quality Inspection** — Take photos in AppSheet → AI analyzes for defects
-- **Customer Feedback** — Submit text → auto-categorize sentiment and topics
-- **Product Catalog** — Upload spec sheets → match against your catalog
+These are the building blocks used by `classifyDocument()`, `extractData()`, etc.:
 
----
+| Function | When to use it |
+|----------|---------------|
+| `callGemini(prompt, options)` | Send a text-only question to Gemini |
+| `callGeminiWithFile(prompt, fileId, options)` | Send a question + a file (image, PDF, doc) |
+| `callGeminiJSON(prompt, fileId, options)` | Same as above, but forces a structured JSON response |
 
-## Supported File Types
+### Reliability
 
-| Type | How it's processed |
-|------|--------------------|
-| PDF | Sent directly to Gemini |
-| Images (PNG, JPG, etc.) | Sent directly to Gemini |
-| Google Docs | Exported as PDF → sent to Gemini |
-| Google Sheets | Exported as PDF → sent to Gemini |
-| Google Slides | Exported as PDF → sent to Gemini |
+The script handles common issues automatically:
+- **Rate limits** — If Google throttles your requests, the script waits and retries up to 3 times with increasing delays
+- **JSON parsing** — Gemini sometimes wraps JSON in markdown code blocks — the script handles both formats
+- **File conversion** — Google Workspace files (Docs, Sheets, Slides) are auto-exported to PDF before sending to Gemini
 
----
+### Script Properties
 
-## Built-In Reliability
+| Key | Required | Description |
+|-----|----------|-------------|
+| `GEMINI_API_KEY` | ✅ | Your Gemini API key from [AI Studio](https://aistudio.google.com/apikey) |
 
-- **Retry logic** — auto-retries on rate limits (429) with exponential backoff
-- **JSON parsing** — handles markdown-wrapped and raw JSON responses
-- **File conversion** — auto-converts Docs, Sheets, Slides to PDF for AI
-- **Error handling** — clear error messages for debugging
-
----
-
-## Project Structure
-
-```
-appsheet-gemini-starter/
-├── src/
-│   ├── Code.js           # Copy this into Apps Script
-│   └── appsscript.json   # Apps Script manifest
-├── LICENSE
-└── README.md
-```
+</details>
 
 ---
 
-## FAQ
+## ❓ FAQ
 
-**Q: Do I need a paid Gemini API plan?**  
-No. The free tier gives you 15 requests/minute — enough for most AppSheet apps.
+**"Is this really free?"**  
+Yes. Apps Script is free. The Gemini API free tier gives you 15 requests per minute — that's plenty for most AppSheet apps. You only pay if you exceed millions of requests.
 
-**Q: Can I use this with any AppSheet edition?**  
-Yes. "Call a script" works with AppSheet Core and Enterprise.
+**"I'm not a developer. Can I still set this up?"**  
+Absolutely. You're copying one file and pasting one API key. If you've ever added a formula in Google Sheets, you can do this.
 
-**Q: Can I use a different Gemini model?**  
-Yes. Pass `{ model: "gemini-2.0-flash" }` as options to any function.
+**"Will this work with my existing AppSheet app?"**  
+Yes. As long as your app uses a Google Sheet as its data source, you can add this to the same Sheet's Apps Script.
+
+**"What happens if the AI gets it wrong?"**  
+Every response includes a `confidence` score (0-100). You can set up your AppSheet app to flag low-confidence results for human review — just add a rule like "If Confidence < 70, mark as Needs Review."
+
+**"Can I customize what the AI extracts?"**  
+Yes. The `extractData()` function takes a list of field names. Pass whatever you need: `["po_number", "ship_date", "line_items"]` — Gemini figures out where to find them.
+
+**"Does this send my data to OpenAI or a third party?"**  
+No. Everything stays in the Google ecosystem. Your files go from Google Drive → Google's Gemini API → back to Google Sheets. No third-party services involved.
 
 ---
 
-## Author
+## 👤 Author
 
 **Islom Ilkhomov** — Google Workspace & GCP Automation Expert
 
-Building production automation systems with AppSheet, Apps Script, and Gemini AI.
+I build production automation systems with AppSheet, Apps Script, and Gemini AI for manufacturing, operations, and document processing.
 
-- [LinkedIn](https://linkedin.com/in/islomilkhomov)
-- [GitHub](https://github.com/IslomIlkhom)
+[LinkedIn](https://linkedin.com/in/islomilkhomov) · [GitHub](https://github.com/IslomIlkhom)
 
 ---
 
-## License
+## 📄 License
 
-MIT — use it, modify it, build on it.
+MIT — use it, modify it, share it. Attribution appreciated but not required.
