@@ -87,6 +87,29 @@ callGemini('Describe this in detail', {
 | `temperature` | `0.2` | 0 = deterministic, 1 = creative |
 | `maxTokens` | `2048` | max response length |
 
+## Q&A
+
+**I'm getting 429 errors from the Gemini API**
+The script retries automatically with backoff (3 attempts). If you still hit limits, you're likely over the free tier's 15 requests/minute. Either add a delay between calls or switch to a paid plan. The free tier is fine for most AppSheet apps though.
+
+**Does this work with the free Gemini API?**
+Yes. `gemini-2.0-flash-lite` is free. You get 15 RPM and 1M tokens/day. That covers most AppSheet use cases unless you're batch-processing hundreds of files.
+
+**My bot runs but nothing gets written back to the sheet**
+Check that your "Call a script" task is pointing to the correct function and that you're passing the right column as the file ID parameter. Also make sure the script has permission to edit the sheet — run any function manually once first to trigger the OAuth consent.
+
+**Can I use this with Google Workspace files (Docs, Sheets, Slides)?**
+Yes. The script exports them to PDF before sending to Gemini. This happens automatically — you just pass the file ID.
+
+**The classification is wrong sometimes**
+Gemini returns a `confidence` score (0-100). In your AppSheet app, add a slice or action that flags rows where confidence < 70 for manual review. This is what I do in production.
+
+**Will this work if I have multiple bots calling the script at the same time?**
+Yes, but be aware of the 15 RPM rate limit. If you have several bots triggering simultaneously, they'll queue on the retry logic. For heavy workloads, consider adding `Utilities.sleep()` between calls or upgrading your API quota.
+
+**Is my data sent to a third party?**
+No. Files go from Google Drive → Google's Gemini API → back to Google Sheets. Everything stays within Google's infrastructure.
+
 ## Background
 
 I extracted this from a production document processing system that classifies thousands of files against a product catalog using Gemini. The full system includes concurrent workers, circuit breakers, and fuzzy matching — this starter is the simplified foundation.
