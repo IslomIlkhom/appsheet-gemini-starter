@@ -8,6 +8,8 @@ This starter kit connects AppSheet to Google's Gemini AI through Apps Script. Up
 [![Made with Apps Script](https://img.shields.io/badge/Made%20with-Apps%20Script-34A853?logo=google&logoColor=white)](https://script.google.com)
 [![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Gemini%20AI-886FBF?logo=google&logoColor=white)](https://ai.google.dev)
 
+> 📺 **Video tutorial:** [Gemini AI + AppSheet: 8 Powerful Models You Must See!](https://www.youtube.com/watch?v=eIrrYjY4M1M) — see this in action before you start.
+
 ---
 
 ## 🏗 What You Can Build
@@ -223,13 +225,19 @@ No. Everything stays in the Google ecosystem. Your files go from Google Drive �
 
 ---
 
+## 🚀 Built With This
+
+This starter kit is extracted from a production document intelligence system that processes thousands of files — classifying, extracting, and matching documents against product catalogs using Gemini AI. If you need something more advanced, [get in touch](https://linkedin.com/in/islomilkhomov).
+
+---
+
 ## 👤 Author
 
 **Islom Ilkhom** — Google Workspace & GCP Automation Expert
 
 I build production automation systems with AppSheet, Apps Script, and Gemini AI for manufacturing, operations, and document processing.
 
-[LinkedIn](https://linkedin.com/in/islomilkhomov) · [GitHub](https://github.com/IslomIlkhom)
+[YouTube](https://www.youtube.com/@IslomIlkhom) · [LinkedIn](https://linkedin.com/in/islomilkhomov) · [GitHub](https://github.com/IslomIlkhom)
 
 ---
 
