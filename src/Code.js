@@ -13,7 +13,7 @@
  * 
  * No webhooks. No triggers. Just Apps Script + Gemini.
  * 
- * @author Islom Ilkhomov
+ * @author Islom Ilkhom
  * @license MIT
  * @see https://github.com/IslomIlkhom/appsheet-gemini-starter
  */

@@ -225,7 +225,7 @@ No. Everything stays in the Google ecosystem. Your files go from Google Drive �
 
 ## 👤 Author
 
-**Islom Ilkhomov** — Google Workspace & GCP Automation Expert
+**Islom Ilkhom** — Google Workspace & GCP Automation Expert
 
 I build production automation systems with AppSheet, Apps Script, and Gemini AI for manufacturing, operations, and document processing.
 
