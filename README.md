@@ -281,7 +281,7 @@ Issues and PRs welcome. If you build something cool with this, [open an issue](.
 
 - [LinkedIn](https://linkedin.com/in/islomilkhomov)
 - [YouTube](https://youtube.com/@islomilkhomov)
-- [GitHub](https://github.com/islom-ilkhomov)
+- [GitHub](https://github.com/IslomIlkhom)
 
 Building production automation systems with AppSheet + Apps Script + Gemini AI.
 

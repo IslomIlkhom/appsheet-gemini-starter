@@ -7,7 +7,7 @@
  * 
  * @author Islom Ilkhomov
  * @license MIT
- * @see https://github.com/islom-ilkhomov/appsheet-gemini-starter
+ * @see https://github.com/IslomIlkhom/appsheet-gemini-starter
  */
 
 // ─────────────────────────────────────────────
