@@ -91,7 +91,7 @@ callGemini('Describe this in detail', {
 
 I extracted this from a production document processing system that classifies thousands of files against a product catalog using Gemini. The full system includes concurrent workers, circuit breakers, and fuzzy matching — this starter is the simplified foundation.
 
-If you're building something similar: [get in touch](https://linkedin.com/in/islomilkhomov).
+If you're building something similar: [get in touch](https://linkedin.com/in/islomilkhom).
 
 ## License
 
@@ -99,4 +99,4 @@ MIT
 
 ---
 
-[YouTube](https://www.youtube.com/@IslomIlkhom) · [LinkedIn](https://linkedin.com/in/islomilkhomov) · [GitHub](https://github.com/IslomIlkhom)
+[YouTube](https://www.youtube.com/@islom_ilkhom) · [LinkedIn](https://linkedin.com/in/islomilkhom) · [GitHub](https://github.com/IslomIlkhom)
